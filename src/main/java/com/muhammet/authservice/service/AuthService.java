@@ -1,5 +1,6 @@
 package com.muhammet.authservice.service;
 
+import com.muhammet.authservice.dto.request.RegisterDto;
 import com.muhammet.authservice.entity.Auth;
 import com.muhammet.authservice.repository.AuthRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,12 @@ public class AuthService {
 
     public List<Auth> findAll() {
         return authRepository.findAll();
+    }
+
+    public void register(RegisterDto registerDto) {
+        authRepository.save(Auth.builder()
+                        .email(registerDto.email())
+                        .password(registerDto.password())
+                .build());
     }
 }
