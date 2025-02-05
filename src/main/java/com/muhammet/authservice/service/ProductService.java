@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -58,5 +59,19 @@ public class ProductService {
 
     public Optional<Product> getProductById(Long productId) {
         return productRepository.findById(productId);
+    }
+
+    public void updateProduct(Product product) {
+        /**
+         * DİKKAT!!!!!
+         * kullanıcı tarafından gelen değerlerde id null ya da boş gelir ise bu nedenle
+         * save işlemi update yerine güncelleme yapar.
+         */
+        if(!Objects.isNull(product.getId()) && product.getId() < 1)
+            productRepository.save(product);
+    }
+
+    public void deleteById(Long productId) {
+        productRepository.deleteById(productId);
     }
 }

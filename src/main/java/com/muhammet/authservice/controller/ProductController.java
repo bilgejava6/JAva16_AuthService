@@ -54,4 +54,16 @@ public class ProductController {
                         .message("Ürün bilgisi getiirldi.")
                 .build());
     }
+
+    @PostMapping("/edit-product")
+    public ResponseEntity<BaseResponse<Boolean>> editProduct(@RequestBody Product product){
+        productService.updateProduct(product);
+        return ResponseEntity.ok(BaseResponse.<Boolean>builder().data(true).code(200).message("Güncelleme başarılı").build());
+    }
+
+    @DeleteMapping("/delete-by-id")
+    public ResponseEntity<BaseResponse<Boolean>> deleteById(Long productId){
+        productService.deleteById(productId);
+        return ResponseEntity.ok(BaseResponse.<Boolean>builder().data(true).code(200).message("Silme başarılı").build());
+    }
 }
