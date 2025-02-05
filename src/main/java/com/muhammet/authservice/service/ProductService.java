@@ -43,6 +43,7 @@ public class ProductService {
             if(category.isPresent())
                 result.add(
                        ProductListResponseDto.builder()
+                               .productId(p.getId())
                                .categoryName(category.get().getCategoryName())
                                .name(p.getName())
                                .price(p.getPrice())

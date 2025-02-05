@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class ProductListResponseDto {
+    Long productId;
     String name;
     List<String> sizes;
     BigDecimal price;
